@@ -30,11 +30,13 @@ public final class basics extends JavaPlugin {
             }
         });
 
+        // Warp Commands
         Objects.requireNonNull(this.getCommand("setwarp")).setExecutor(new Setwarp());
         Objects.requireNonNull(this.getCommand("warp")).setExecutor(new TeleportWarp());
         Objects.requireNonNull(this.getCommand("delwarp")).setExecutor(new Delwarp());
         Objects.requireNonNull(this.getCommand("warps")).setExecutor(new ListWarps());
 
+        // Home Commands
         Objects.requireNonNull(this.getCommand("sethome")).setExecutor(new Sethome());
         Objects.requireNonNull(this.getCommand("delhome")).setExecutor(new Delhome());
         Objects.requireNonNull(this.getCommand("home")).setExecutor(new TeleportHome());
