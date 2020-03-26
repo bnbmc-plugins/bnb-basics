@@ -6,8 +6,7 @@ import com.bananafalls.bnb.basics.Bnb.Home.ListHomes;
 import com.bananafalls.bnb.basics.Bnb.Home.Sethome;
 import com.bananafalls.bnb.basics.Bnb.Home.TeleportHome;
 import com.bananafalls.bnb.basics.Bnb.Warp.*;
-import com.bananafalls.bnb.basics.Bnb.back.Back;
-import com.bananafalls.bnb.basics.Bnb.back.TeleportListener;
+import com.bananafalls.bnb.basics.Bnb.back.BackManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,10 +17,13 @@ import java.util.Objects;
 public final class basics extends JavaPlugin {
 
     private Connection connection;
+    public static basics instance;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+
+        (basics.instance = this).registerCommands();
 
         Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
             @Override
@@ -41,12 +43,15 @@ public final class basics extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("delhome")).setExecutor(new Delhome());
         Objects.requireNonNull(this.getCommand("home")).setExecutor(new TeleportHome());
         Objects.requireNonNull(this.getCommand("homes")).setExecutor(new ListHomes());
-
-        Objects.requireNonNull(this.getCommand("back")).setExecutor(new Back());
+        Objects.requireNonNull(this.getCommand("back")).setExecutor(new BackManager());
 
         Bukkit.getServer().getPluginManager().registerEvents(new ChatListener(), this);
         Bukkit.getServer().getPluginManager().registerEvents(new SignWarp(), this);
-        Bukkit.getServer().getPluginManager().registerEvents(new TeleportListener(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new BackManager(), this);
+    }
+
+    private void registerCommands() {
+
     }
 
     @Override
