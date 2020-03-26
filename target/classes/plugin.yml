@@ -1,0 +1,23 @@
+name: BNB-Basics
+version: dev
+main: com.bananafalls.bnb.basics.Bnb.basics
+api-version: 1.13
+commands:
+  setwarp:
+    description: Set a warp
+  delwarp:
+    description: Delete a warp
+  warps:
+    description: List avaliable warps
+  warp:
+    description: Warp to a location
+  sethome:
+    description: Set a home
+  delhome:
+    description: Delete a home
+  homes:
+    description: List avaliable homes
+  home:
+    description: Teleport to a home
+  back:
+    description: Return to your last location
