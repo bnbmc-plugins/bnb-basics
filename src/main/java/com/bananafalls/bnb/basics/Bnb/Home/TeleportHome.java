@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Random;
 
 public class TeleportHome implements CommandExecutor {
@@ -53,6 +52,8 @@ public class TeleportHome implements CommandExecutor {
 
 
                 if (ec.homeExists(p.getUniqueId(), name)) {
+
+
                     // Access the database asynchronously
                     Bukkit.getScheduler().runTaskAsynchronously(plugin, new Runnable() {
                         @Override
@@ -73,12 +74,19 @@ public class TeleportHome implements CommandExecutor {
                                 Bukkit.getScheduler().runTask(plugin, new Runnable() {
                                     @Override
                                     public void run() {
-                                        p.teleport(new Location(Bukkit.getWorld(world), x, y, z, pitch, yaw));
-                                        if (name.equals("home")) {
-                                            p.sendMessage(green + bold + "WARPED!" + green + " You have been sent to your home!");
+                                        Location homeLocation = new Location(Bukkit.getWorld(world), x, y, z, pitch, yaw);
+
+                                        if(basics.safeChecker.checkIfSafe(homeLocation)){
+                                            p.teleport(homeLocation);
+                                            if (name.equals("home")) {
+                                                p.sendMessage(green + bold + "WARPED!" + green + " You have been sent to your home!");
+                                            } else {
+                                                p.sendMessage(green + bold + "WARPED!" + green + " You have been sent to your home, '" + name + "'!");
+                                            }
                                         } else {
-                                            p.sendMessage(green + bold + "WARPED!" + green + " You have been sent to your home, '" + name + "'!");
+                                            p.sendMessage(red + bold + "UNSAFE!" + red + " That home is now unsafe! Please delete the home and set it in a safe place.");
                                         }
+
 
                                     }
                                 });

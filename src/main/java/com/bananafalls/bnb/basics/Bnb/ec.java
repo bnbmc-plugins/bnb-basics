@@ -1,8 +1,5 @@
 package com.bananafalls.bnb.basics.Bnb;
 
-import com.bananafalls.bnb.basics.Bnb.basics;
-import org.bukkit.Bukkit;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

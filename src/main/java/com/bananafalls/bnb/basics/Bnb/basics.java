@@ -14,16 +14,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.*;
 import java.util.Objects;
 
-public final class basics extends JavaPlugin {
+public class basics extends JavaPlugin {
 
     private Connection connection;
-    public static basics instance;
+
+    public static basics plugin;
+
+    public static BackManager backManager = new BackManager();
+    public static SafeChecker safeChecker = new SafeChecker();
 
     @Override
     public void onEnable() {
         // Plugin startup logic
 
-        (basics.instance = this).registerCommands();
+        plugin = this;
 
         Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
             @Override
