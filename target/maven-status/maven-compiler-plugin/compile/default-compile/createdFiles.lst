@@ -1,4 +1,5 @@
 com\bananafalls\bnb\basics\Bnb\basics.class
+com\bananafalls\bnb\basics\Bnb\Home\TeleportHome$2.class
 com\bananafalls\bnb\basics\Bnb\Warp\TeleportWarp.class
 com\bananafalls\bnb\basics\Bnb\Home\Sethome.class
 com\bananafalls\bnb\basics\Bnb\basics$1.class
@@ -17,6 +18,7 @@ com\bananafalls\bnb\basics\Bnb\Warp\Delwarp.class
 com\bananafalls\bnb\basics\Bnb\Home\TeleportHome$1.class
 com\bananafalls\bnb\basics\Bnb\Home\TeleportHome$1$1.class
 com\bananafalls\bnb\basics\Bnb\Warp\SignWarp.class
+com\bananafalls\bnb\basics\Bnb\Home\TeleportHome$2$1.class
 com\bananafalls\bnb\basics\Bnb\Warp\ListWarps.class
 com\bananafalls\bnb\basics\Bnb\Warp\Delwarp$1.class
 com\bananafalls\bnb\basics\Bnb\Home\Sethome$2.class

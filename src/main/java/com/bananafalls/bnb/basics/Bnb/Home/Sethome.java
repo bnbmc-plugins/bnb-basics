@@ -41,6 +41,9 @@ public class Sethome implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) { Player p = (Player) sender;
+
+        System.out.println(p.getLocation());
+
         if(p.hasPermission("bnb.homes.set")) {
             if (args.length != 0) {
                 if (!ec.homeExists(p.getUniqueId(), args[0])) { // If the name exists in the DB

@@ -5,20 +5,29 @@ import org.bukkit.Material;
 
 public class SafeChecker {
 
-    public boolean checkIfSafe(Location loc){
+    public boolean checkIfSafe(Location loc) {
 
-        Location blockAbove = loc.add(0, 1, 0);
-        Location blockBelow = loc.subtract(0, 1, 0);
+        Location topBlock = new Location(loc.getWorld(), loc.getX(), loc.getY() + 1, loc.getZ());
+        Location blockBelow = new Location(loc.getWorld(), loc.getX(), loc.getY() - 1, loc.getZ());
 
-        System.out.println(blockAbove + " /////////////// " + blockBelow);
+        System.out.println(topBlock.getY() + " < block top (head)");
+        System.out.println(blockBelow.getY() + " < block below");
+        System.out.println(loc.getY() + " < block bottom (feet)");
 
-        if(loc.getBlock().getType() != Material.AIR || loc.getBlock().getType() == Material.LAVA ||
-                blockAbove.getBlock().getType() != Material.AIR || blockAbove.getBlock().getType() == Material.LAVA ||
-        blockBelow.getBlock().getType() == Material.LAVA){
+        System.out.println(topBlock.getBlock().getType() + " top block type");
+        System.out.println(loc.getBlock().getType() + " below block type");
+        System.out.println(blockBelow.getBlock().getType() + " block under feet type");
+
+        if (loc.getBlock().getType().isSolid() || topBlock.getBlock().getType().isSolid()) {
             return false;
+        } else {
+            if (loc.getBlock().getType() == Material.LAVA || topBlock.getBlock().getType() == Material.LAVA || blockBelow.getBlock().getType() == Material.LAVA || blockBelow.getBlock().getType() == Material.CACTUS) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
-        return true;
     }
 
 }
