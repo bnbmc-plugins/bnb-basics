@@ -24,7 +24,7 @@ public class TeleportWarp implements CommandExecutor {
     String red = ChatColor.RED + "";
     String green = ChatColor.GREEN + "";
     String bold = ChatColor.BOLD + "";
-    String italics = ChatColor.ITALIC + "";
+    String yellow = ChatColor.YELLOW + "";
     //</editor-fold>
     //<editor-fold desc="Error Messages">
     String[] errors = {
@@ -67,8 +67,20 @@ public class TeleportWarp implements CommandExecutor {
                                 Bukkit.getScheduler().runTask(plugin, new Runnable() {
                                     @Override
                                     public void run() {
-                                        p.teleport(new Location(Bukkit.getWorld(world), x, y, z, pitch, yaw));
-                                        p.sendMessage(green + bold + "WARPED!" + green + " You have been sent to the '" + name + "' warp!");
+                                        Location warpLocation = new Location(Bukkit.getWorld(world), x, y, z, pitch, yaw);
+                                        if(basics.safeChecker.checkIfSafe(warpLocation)){
+                                            p.teleport(warpLocation);
+                                            p.sendMessage(green + bold + "WARPED!" + green + " You have been sent to the '" + name + "' warp!");
+                                        } else {
+                                            if(p.hasPermission("bnb.warps.unsafebypass")){
+                                                p.teleport(warpLocation);
+                                                p.sendMessage(yellow + bold + "WARNING!" + yellow + " The warp you just teleported to is unsafe! Normal players will not be able to teleport here. Please delete and re-set this warp.");
+                                            } else {
+                                                p.sendMessage(red + bold + "UNSAFE!" + red + " That warp is unsafe to teleport to! Please inform a staff member immediately.");
+                                            }
+
+                                        }
+
                                     }
                                 });
 
