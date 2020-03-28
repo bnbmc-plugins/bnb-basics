@@ -5,6 +5,8 @@ import com.bananafalls.bnb.basics.Bnb.Home.Delhome;
 import com.bananafalls.bnb.basics.Bnb.Home.ListHomes;
 import com.bananafalls.bnb.basics.Bnb.Home.Sethome;
 import com.bananafalls.bnb.basics.Bnb.Home.TeleportHome;
+import com.bananafalls.bnb.basics.Bnb.PlayerEvents.PlayerJoin;
+import com.bananafalls.bnb.basics.Bnb.PlayerEvents.PlayerLeave;
 import com.bananafalls.bnb.basics.Bnb.Warp.*;
 import com.bananafalls.bnb.basics.Bnb.back.BackManager;
 import org.bukkit.Bukkit;
@@ -35,6 +37,11 @@ public class basics extends JavaPlugin {
                 mysqlSetup();
             }
         });
+
+
+        // Events
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new PlayerLeave(), this);
 
         // Warp Commands
         Objects.requireNonNull(this.getCommand("setwarp")).setExecutor(new Setwarp());
