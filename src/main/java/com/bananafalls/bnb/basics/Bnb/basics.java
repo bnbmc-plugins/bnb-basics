@@ -11,6 +11,7 @@ import com.bananafalls.bnb.basics.Bnb.Warp.*;
 import com.bananafalls.bnb.basics.Bnb.back.BackManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.*;
@@ -24,6 +25,7 @@ public class basics extends JavaPlugin {
 
     public static BackManager backManager = new BackManager();
     public static SafeChecker safeChecker = new SafeChecker();
+    public static PlayerJoin playerJoin = new PlayerJoin();
 
     @Override
     public void onEnable() {
@@ -72,7 +74,10 @@ public class basics extends JavaPlugin {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        playerJoin.hasPlayed.clear();
         // Plugin shutdown logic
+
     }
 
     public void mysqlSetup(){

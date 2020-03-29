@@ -10,9 +10,9 @@ public class PlayerLeave implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerQuitEvent e) {
-        Player player = e.getPlayer();
+        Player p = e.getPlayer();
 
-        e.setQuitMessage(ChatColor.RED + player.getDisplayName() + " has left.");
+        e.setQuitMessage(ChatColor.RED + p.getDisplayName() + " has left.");
 
     }
 
