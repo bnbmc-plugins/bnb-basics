@@ -35,7 +35,7 @@ public class BackManager implements CommandExecutor, Listener {
             if(basics.safeChecker.checkIfSafe(backLocations.get(p.getUniqueId()))){
                 p.teleport(backLocations.get(p.getUniqueId())); // If so, teleport them to that location
                 backLocations.remove(p.getUniqueId()); // And remove their HashMap entry
-                p.sendMessage(green + bold + "TELEPORTED!" + green + " You returned to your previous location.!");
+                p.sendMessage(green + bold + "TELEPORTED!" + green + " You returned to your previous location!");
             } else {
                 p.sendMessage(red + bold + "UNSAFE!" + red + " Your previous location is now unsafe to teleport to!");
             }

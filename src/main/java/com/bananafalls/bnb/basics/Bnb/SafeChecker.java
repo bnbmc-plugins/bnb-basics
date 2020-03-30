@@ -35,25 +35,21 @@ public class SafeChecker {
 
         //<editor-fold desc="temp">
         Location topBlockLoc = new Location(loc.getWorld(), loc.getX(), loc.getY() + 1, loc.getZ());
-        Location bottomBlockLoc = loc;
+        Location bottomBlockLoc = new Location(loc.getWorld(), loc.getX(), loc.getY(), loc.getZ());
         Location blockBelowLoc = new Location(loc.getWorld(), loc.getX(), loc.getY() - 1, loc.getZ());
 
         Material topBlock = topBlockLoc.getBlock().getType();
         Material bottomBlock = bottomBlockLoc.getBlock().getType();
         Material blockBelow = blockBelowLoc.getBlock().getType();
 
+        System.out.println(blockBelow);
 
-        System.out.println(topBlockLoc.getY() + " < block top (head)");
-        System.out.println(blockBelowLoc.getY() + " < block below");
-        System.out.println(bottomBlockLoc.getY() + " < block bottom (feet)");
-
-        System.out.println(topBlockLoc.getBlock().getType() + " top block type");
-        System.out.println(bottomBlockLoc.getBlock().getType() + " below block type");
-        System.out.println(blockBelowLoc.getBlock().getType() + " block under feet type");
         //</editor-fold>
         if(blockBelow != LAVA){
             if(topBlock == LAVA || bottomBlock == LAVA){
                 return false;
+            } else if (bottomBlock == SOUL_SAND && !topBlock.isOccluding()){
+                return true;
             } else if (!topBlock.isOccluding() && !bottomBlock.isOccluding()){
                 return true;
             }
