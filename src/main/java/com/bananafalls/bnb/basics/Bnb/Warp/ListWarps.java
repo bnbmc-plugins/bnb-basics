@@ -70,8 +70,16 @@ public class ListWarps implements CommandExecutor {
         try {
             PreparedStatement statement = plugin.getConnection().prepareStatement("SELECT name FROM warps");
             ResultSet rs = statement.executeQuery();
+            boolean which = false;
             while (rs.next()) {
-                warps.add(rs.getString("name"));
+                if(which == false){
+                    warps.add(ChatColor.DARK_GREEN + rs.getString("name"));
+                    which = true;
+                } else {
+                    warps.add(ChatColor.GREEN + rs.getString("name"));
+                    which = false;
+                }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

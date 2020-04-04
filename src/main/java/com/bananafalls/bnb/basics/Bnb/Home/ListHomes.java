@@ -65,6 +65,7 @@ public class ListHomes implements CommandExecutor {
         return false;
     }
 
+
     public List listHomes(UUID owner){
 
         List<String> homes = new ArrayList<>();
@@ -75,9 +76,16 @@ public class ListHomes implements CommandExecutor {
 
             ResultSet rs = statement.executeQuery();
 
-
+            boolean which = false;
             while (rs.next()) {
-                homes.add(rs.getString("name"));
+                if(which == false){
+                    homes.add(ChatColor.DARK_GREEN + rs.getString("name"));
+                    which = true;
+                } else {
+                    homes.add(ChatColor.GREEN + rs.getString("name"));
+                    which = false;
+                }
+
             }
 
         } catch (SQLException e) {
