@@ -1,4 +1,4 @@
-package com.bananafalls.bnb.basics.Bnb.Warp;
+package com.bananafalls.bnb.basics.Bnb.home;
 
 import com.bananafalls.bnb.basics.Bnb.basics;
 import com.bananafalls.bnb.basics.Bnb.ec;
@@ -12,11 +12,12 @@ import org.bukkit.entity.Player;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.UUID;
 
-public class Delwarp implements CommandExecutor {
-    basics plugin = basics.getPlugin(basics.class);
+public class Delhome implements CommandExecutor {
 
     com.bananafalls.bnb.basics.Bnb.ec ec = new ec();
+    basics plugin = basics.getPlugin(basics.class);
 
     //<editor-fold desc="Colour Variables">
     String red = ChatColor.RED + "";
@@ -37,46 +38,45 @@ public class Delwarp implements CommandExecutor {
     //</editor-fold>
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) { Player p = (Player) sender;
-
-
-        if(p.hasPermission("bnb.warps.delete")) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        Player p = (Player) sender;
+        if (p.hasPermission("bnb.homes.delete")) {
             if (args.length != 0) {
-                String name = args[0].toLowerCase();
-                if (ec.warpExists(name)) { // If the name exists in the DB
+                UUID owner = p.getUniqueId();
+                String name = args[0];
+
+                if (ec.homeExists(owner, name)) {
                     // Access the database asynchronously
                     Bukkit.getScheduler().runTaskAsynchronously(plugin, new Runnable() {
                         @Override
                         public void run() {
                             try {
                                 PreparedStatement statement = plugin.getConnection().prepareStatement(
-                                        "DELETE FROM warps WHERE name =?");
+                                        "DELETE FROM homes WHERE name =? AND owner =?");
 
                                 statement.setString(1, name);
+                                statement.setString(2, owner.toString());
 
                                 statement.executeUpdate();
+                                p.sendMessage(green + bold + "DELETED!" + green + " Home '" + name.toLowerCase() + "' was deleted!");
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
                         }
                     });
 
-                    p.sendMessage(green + bold + "SUCCESS!" + green + " Deleted warp '" + name + "'!");
-
                 } else {
-                    p.sendMessage(errors[new Random().nextInt(errors.length)] + "The warp '" + name + "' does not exist!");
+                    p.sendMessage(errors[new Random().nextInt(errors.length)] + "You do not have a home called '" + args[0].toLowerCase() + "'!");
                 }
-
             } else {
-                p.sendMessage(errors[new Random().nextInt(errors.length)] + "You need to enter a warp name!");
+                p.sendMessage(errors[new Random().nextInt(errors.length)] + "You need to enter a home name!");
             }
         } else {
-            p.sendMessage(red + bold + "NO PERMISSION! " + red + "You do not have permission to delete warps!");
+            p.sendMessage(red + bold + "NO PERMISSION! " + red + "You do not have permission to delete homes!");
         }
 
 
         return false;
+
     }
 }
-
-

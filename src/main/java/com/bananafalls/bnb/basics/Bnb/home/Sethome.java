@@ -1,4 +1,4 @@
-package com.bananafalls.bnb.basics.Bnb.Home;
+package com.bananafalls.bnb.basics.Bnb.home;
 
 import com.bananafalls.bnb.basics.Bnb.basics;
 import com.bananafalls.bnb.basics.Bnb.ec;

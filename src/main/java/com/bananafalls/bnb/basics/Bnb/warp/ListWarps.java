@@ -1,4 +1,4 @@
-package com.bananafalls.bnb.basics.Bnb.Home;
+package com.bananafalls.bnb.basics.Bnb.warp;
 
 import com.bananafalls.bnb.basics.Bnb.basics;
 import org.bukkit.ChatColor;
@@ -13,9 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
-public class ListHomes implements CommandExecutor {
+public class ListWarps implements CommandExecutor {
 
     //<editor-fold desc="Colour Variables">
     String red = ChatColor.RED + "";
@@ -39,7 +38,7 @@ public class ListHomes implements CommandExecutor {
     //<editor-fold desc="Success Messages">
     String[] successes = {
             green + bold + "A LIST! " + green,
-            green + bold + "HOMES! " + green,
+            green + bold + "WARPS! " + green,
             green + bold + "ITEMS! " + green,
             green + bold + "AN ARRAY! " + green,
             green + bold + "LOCATIONS! " + green
@@ -51,51 +50,43 @@ public class ListHomes implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) { Player p = (Player) sender;
 
-        if (p.hasPermission("bnb.homes.list")){
-            if(!listHomes(p.getUniqueId()).isEmpty()){
-                p.sendMessage(successes[new Random().nextInt(successes.length)] + "Your available homes are: " + listHomes(p.getUniqueId()).toString().substring(1, listHomes(p.getUniqueId()).toString().length()-1).toLowerCase());
+        if (p.hasPermission("bnb.warps.list")){
+            if(!listWarps().isEmpty()){
+                p.sendMessage(successes[new Random().nextInt(successes.length)] + "The available warps are: " + listWarps().toString().substring(1, listWarps().toString().length()-1).toLowerCase());
             } else {
-                p.sendMessage(errors[new Random().nextInt(errors.length)] + "You have no homes :( Set one with /sethome!");
+                p.sendMessage(errors[new Random().nextInt(errors.length)] + "There are no available warps :(");
             }
 
         } else {
-            p.sendMessage(red + bold + "NO PERMISSION! " + red + "You do not have permission to list homes!");
+            p.sendMessage(red + bold + "NO PERMISSION! " + red + "You do not have permission to list warps!");
         }
 
         return false;
     }
 
+    public List listWarps(){
 
-    public List listHomes(UUID owner){
-
-        List<String> homes = new ArrayList<>();
-
+        List<String> warps = new ArrayList<>();
         try {
-            PreparedStatement statement = plugin.getConnection().prepareStatement("SELECT name FROM homes WHERE owner =?");
-            statement.setString(1, owner.toString());
-
+            PreparedStatement statement = plugin.getConnection().prepareStatement("SELECT name FROM warps");
             ResultSet rs = statement.executeQuery();
-
             boolean which = false;
             while (rs.next()) {
                 if(which == false){
-                    homes.add(ChatColor.DARK_GREEN + rs.getString("name"));
+                    warps.add(ChatColor.DARK_GREEN + rs.getString("name"));
                     which = true;
                 } else {
-                    homes.add(ChatColor.GREEN + rs.getString("name"));
+                    warps.add(ChatColor.GREEN + rs.getString("name"));
                     which = false;
                 }
 
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-        return homes;
+        return warps;
 
     }
+
 
 }

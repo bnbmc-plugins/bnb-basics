@@ -1,4 +1,4 @@
-package com.bananafalls.bnb.basics.Bnb.Chat;
+package com.bananafalls.bnb.basics.Bnb.chat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

@@ -1,4 +1,4 @@
-package com.bananafalls.bnb.basics.Bnb.PlayerEvents;
+package com.bananafalls.bnb.basics.Bnb.playerevents;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
