@@ -1,17 +1,16 @@
 package com.bananafalls.bnb.basics.Bnb;
 
-import com.bananafalls.bnb.basics.Bnb.Chat.ChatListener;
-import com.bananafalls.bnb.basics.Bnb.Home.Delhome;
-import com.bananafalls.bnb.basics.Bnb.Home.ListHomes;
-import com.bananafalls.bnb.basics.Bnb.Home.Sethome;
-import com.bananafalls.bnb.basics.Bnb.Home.TeleportHome;
-import com.bananafalls.bnb.basics.Bnb.PlayerEvents.PlayerJoin;
-import com.bananafalls.bnb.basics.Bnb.PlayerEvents.PlayerLeave;
-import com.bananafalls.bnb.basics.Bnb.Warp.*;
+import com.bananafalls.bnb.basics.Bnb.chat.ChatListener;
+import com.bananafalls.bnb.basics.Bnb.home.Delhome;
+import com.bananafalls.bnb.basics.Bnb.home.ListHomes;
+import com.bananafalls.bnb.basics.Bnb.home.Sethome;
+import com.bananafalls.bnb.basics.Bnb.home.TeleportHome;
+import com.bananafalls.bnb.basics.Bnb.playerevents.PlayerJoin;
+import com.bananafalls.bnb.basics.Bnb.playerevents.PlayerLeave;
+import com.bananafalls.bnb.basics.Bnb.warp.*;
 import com.bananafalls.bnb.basics.Bnb.back.BackManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.*;
