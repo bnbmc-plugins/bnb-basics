@@ -148,6 +148,8 @@ public class TeleportHome implements CommandExecutor {
 
                 // CLEAN THIS UP ^^^ !!!!!!! (put home getter in other class)
 
+            } else {
+                p.sendMessage(red + bold + "ARGUMENTS! " + red + "Too many arguments!");
             }
         } else {
             p.sendMessage(red + bold + "NO PERMISSION! " + red + "You do not have permission to use homes!");

@@ -39,7 +39,7 @@ public class ListHomes implements CommandExecutor {
     //<editor-fold desc="Success Messages">
     String[] successes = {
             green + bold + "A LIST! " + green,
-            green + bold + "WARPS! " + green,
+            green + bold + "HOMES! " + green,
             green + bold + "ITEMS! " + green,
             green + bold + "AN ARRAY! " + green,
             green + bold + "LOCATIONS! " + green
