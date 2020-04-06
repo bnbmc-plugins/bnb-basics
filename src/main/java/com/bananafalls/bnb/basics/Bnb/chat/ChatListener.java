@@ -19,8 +19,10 @@ public class ChatListener implements Listener {
         String message = e.getMessage();
         Player author = e.getPlayer();
 
+        message = translateAlternateColorCodes('&', message);
+
         TextComponent prefix = new TextComponent(GOLD + "[M] ");
-        TextComponent name = null;
+        TextComponent name;
         if(author.isOp()){
             if(!author.getName().equals(author.getDisplayName())){
                 name = new TextComponent(RED + author.getDisplayName());
@@ -39,8 +41,11 @@ public class ChatListener implements Listener {
         TextComponent divider = new TextComponent(WHITE + " » ");
         TextComponent sentMessage = new TextComponent(message);
 
+        TextComponent finalMessage = new TextComponent(prefix);
+        finalMessage.addExtra(name); finalMessage.addExtra(divider); finalMessage.addExtra(sentMessage);
+
         for(Player player : Bukkit.getServer().getOnlinePlayers()){
-            player.sendMessage(new ComponentBuilder(prefix).append(name).append(divider).append(sentMessage).create());
+            player.sendMessage(finalMessage);
         }
 
 
