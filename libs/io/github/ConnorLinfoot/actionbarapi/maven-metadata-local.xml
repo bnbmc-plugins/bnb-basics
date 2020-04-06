@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>io.github.ConnorLinfoot</groupId>
+  <artifactId>actionbarapi</artifactId>
+  <versioning>
+    <versions>
+      <version>1.5.4-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20200406184852</lastUpdated>
+  </versioning>
+</metadata>

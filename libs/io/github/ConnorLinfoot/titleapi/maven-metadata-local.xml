@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>io.github.ConnorLinfoot</groupId>
+  <artifactId>titleapi</artifactId>
+  <versioning>
+    <versions>
+      <version>1.7.7-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20200406184737</lastUpdated>
+  </versioning>
+</metadata>

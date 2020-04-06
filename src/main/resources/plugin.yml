@@ -2,6 +2,7 @@ name: BNB-Basics
 version: ${project.version}
 main: com.bananafalls.bnb.basics.Bnb.basics
 api-version: 1.13
+depend: [ActionBarAPI, TitleAPI]
 commands:
   setwarp:
     description: Set a warp
@@ -21,3 +22,5 @@ commands:
     description: Teleport to a home
   back:
     description: Return to your last location
+  broadcast:
+    description: Send a message to all online players

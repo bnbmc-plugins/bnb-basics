@@ -1,5 +1,6 @@
 package com.bananafalls.bnb.basics.Bnb;
 
+import com.bananafalls.bnb.basics.Bnb.chat.Broadcast;
 import com.bananafalls.bnb.basics.Bnb.chat.ChatListener;
 import com.bananafalls.bnb.basics.Bnb.home.Delhome;
 import com.bananafalls.bnb.basics.Bnb.home.ListHomes;
@@ -43,6 +44,9 @@ public class basics extends JavaPlugin {
         // Events
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new PlayerLeave(), this);
+
+        // Broadcast
+        Objects.requireNonNull(this.getCommand("broadcast")).setExecutor(new Broadcast());
 
         // Warp Commands
         Objects.requireNonNull(this.getCommand("setwarp")).setExecutor(new Setwarp());
